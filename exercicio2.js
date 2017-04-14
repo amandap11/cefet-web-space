@@ -14,21 +14,28 @@ let imagem = document.querySelector("#galeria img");
 let botaoProximo = document.getElementById("proximo");
 let botaoAnterior = document.getElementById("anterior");
 
+let indexAtual = 0;
+
 botaoProximo.addEventListener('click', function (ev){
 
-	let primeiraImagem = servidorDasImagens + todasAsImagens[0];
-	let segundaImagem = servidorDasImagens + todasAsImagens[1];
-	let terceiraImagem = servidorDasImagens + todasAsImagens[2];
-	let quartaImagem = servidorDasImagens + todasAsImagens[3];
-	let quintaImagem = servidorDasImagens + todasAsImagens[4];
+	indexAtual++;
 
-	let caminhoAtual = imagem.src;
+	if (indexAtual >= todasAsImagens.length){
+		indexAtual = 0;
+	}
 
-	if (caminhoAtual == primeiraImagem){
-		imagem.src = segundaImagem;
-	} 
+	imagem.src = servidorDasImagens + todasAsImagens[indexAtual];
+
 });
 
 botaoAnterior.addEventListener('click', function (ev){
+
+	indexAtual--;
+
+	if (indexAtual < 0){
+		indexAtual = 4;
+	}
+
+	imagem.src = servidorDasImagens + todasAsImagens[indexAtual];
 	
 });
